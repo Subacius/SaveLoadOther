@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: 756e46c6631854e8da1b8a06c98e072d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Astronaut_1
+    100004: Astronaut_2
+    100006: Astronaut_3
+    100008: Astronaut_4
+    100010: Base
+    100012: Flag
+    100014: Space_bus
+    100016: Stone
+    100018: Stone_lit_006
+    100020: Stone_lit_007
+    100022: Stone_lit_014
+    100024: Stone_lit_015
+    100026: Stone_lit_016
+    100028: Stone_lit_017
+    100030: Stone_lit_018
+    100032: Stone_lit_019
+    100034: Stone_lit_020
+    100036: Stone_lit_021
+    100038: Stone_lit_022
+    100040: Stone_lit_023
+    100042: Stone_lit_024
+    100044: Stone_lit_025
+    100046: Stone_lit_026
+    100048: Stone_lit_027
+    100050: Stone_lit_028
+    100052: Stone_lit_029
+    400000: //RootNode
+    400002: Astronaut_1
+    400004: Astronaut_2
+    400006: Astronaut_3
+    400008: Astronaut_4
+    400010: Base
+    400012: Flag
+    400014: Space_bus
+    400016: Stone
+    400018: Stone_lit_006
+    400020: Stone_lit_007
+    400022: Stone_lit_014
+    400024: Stone_lit_015
+    400026: Stone_lit_016
+    400028: Stone_lit_017
+    400030: Stone_lit_018
+    400032: Stone_lit_019
+    400034: Stone_lit_020
+    400036: Stone_lit_021
+    400038: Stone_lit_022
+    400040: Stone_lit_023
+    400042: Stone_lit_024
+    400044: Stone_lit_025
+    400046: Stone_lit_026
+    400048: Stone_lit_027
+    400050: Stone_lit_028
+    400052: Stone_lit_029
+    2100000: 'Material #25'
+    2100002: 'Material #54'
+    2100004: 'Material #55'
+    2100006: 'Material #56'
+    2100008: 'Material #57'
+    2100010: 'Material #143'
+    2100012: 'Material #89'
+    2100014: 'Material #90'
+    2100016: 'Material #91'
+    2100018: 'Material #47'
+    2100020: 'Material #49'
+    2100022: 'Material #48'
+    2100024: 'Material #50'
+    2100026: 'Material #32'
+    2300000: Astronaut_1
+    2300002: Astronaut_2
+    2300004: Astronaut_3
+    2300006: Astronaut_4
+    2300008: Base
+    2300010: Flag
+    2300012: Space_bus
+    2300014: Stone_lit_006
+    2300016: Stone_lit_007
+    2300018: Stone_lit_014
+    2300020: Stone_lit_015
+    2300022: Stone_lit_016
+    2300024: Stone_lit_017
+    2300026: Stone_lit_018
+    2300028: Stone_lit_019
+    2300030: Stone_lit_020
+    2300032: Stone_lit_021
+    2300034: Stone_lit_022
+    2300036: Stone_lit_023
+    2300038: Stone_lit_024
+    2300040: Stone_lit_025
+    2300042: Stone_lit_026
+    2300044: Stone_lit_027
+    2300046: Stone_lit_028
+    2300048: Stone_lit_029
+    3300000: Astronaut_1
+    3300002: Astronaut_2
+    3300004: Astronaut_3
+    3300006: Astronaut_4
+    3300008: Base
+    3300010: Flag
+    3300012: Space_bus
+    3300014: Stone_lit_006
+    3300016: Stone_lit_007
+    3300018: Stone_lit_014
+    3300020: Stone_lit_015
+    3300022: Stone_lit_016
+    3300024: Stone_lit_017
+    3300026: Stone_lit_018
+    3300028: Stone_lit_019
+    3300030: Stone_lit_020
+    3300032: Stone_lit_021
+    3300034: Stone_lit_022
+    3300036: Stone_lit_023
+    3300038: Stone_lit_024
+    3300040: Stone_lit_025
+    3300042: Stone_lit_026
+    3300044: Stone_lit_027
+    3300046: Stone_lit_028
+    3300048: Stone_lit_029
+    4300000: Base
+    4300002: Flag
+    4300004: Astronaut_2
+    4300006: Astronaut_3
+    4300008: Astronaut_1
+    4300010: Astronaut_4
+    4300012: Space_bus
+    4300014: Stone_lit_029
+    4300016: Stone_lit_028
+    4300018: Stone_lit_027
+    4300020: Stone_lit_026
+    4300022: Stone_lit_025
+    4300024: Stone_lit_024
+    4300026: Stone_lit_023
+    4300028: Stone_lit_022
+    4300030: Stone_lit_021
+    4300032: Stone_lit_020
+    4300034: Stone_lit_019
+    4300036: Stone_lit_018
+    4300038: Stone_lit_017
+    4300040: Stone_lit_016
+    4300042: Stone_lit_015
+    4300044: Stone_lit_014
+    4300046: Stone_lit_007
+    4300048: Stone_lit_006
+    6400000: Astronaut_1
+    6400002: Astronaut_2
+    6400004: Astronaut_3
+    6400006: Astronaut_4
+    6400008: Base
+    6400010: Flag
+    6400012: Space_bus
+    6400014: Stone_lit_006
+    6400016: Stone_lit_007
+    6400018: Stone_lit_014
+    6400020: Stone_lit_015
+    6400022: Stone_lit_016
+    6400024: Stone_lit_017
+    6400026: Stone_lit_018
+    6400028: Stone_lit_019
+    6400030: Stone_lit_020
+    6400032: Stone_lit_021
+    6400034: Stone_lit_022
+    6400036: Stone_lit_023
+    6400038: Stone_lit_024
+    6400040: Stone_lit_025
+    6400042: Stone_lit_026
+    6400044: Stone_lit_027
+    6400046: Stone_lit_028
+    6400048: Stone_lit_029
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
