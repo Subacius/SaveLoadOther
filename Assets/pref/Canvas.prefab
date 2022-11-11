@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b0278e368066d49893aace15d6f478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 
+  m_ID: 26acb936-25ad-4d82-9af5-35072a6decf3
   m_childID: 
   m_prefabID: Canvas
   m_autoSetPrefabID: 1
@@ -1219,6 +1219,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6050553212957956901}
     m_Modifications:
+    - target: {fileID: 232004406019222581, guid: 4c382fa278dbfea48a3db0e90d7c719d, type: 3}
+      propertyPath: m_ID
+      value: 6db832e0-664e-4e5a-8aec-a606e542fef1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892730992688897633, guid: 4c382fa278dbfea48a3db0e90d7c719d, type: 3}
+      propertyPath: m_ID
+      value: 94a9aff3-61b3-48f4-9ba2-f43219eff7dd
+      objectReference: {fileID: 0}
     - target: {fileID: 6144580421206505774, guid: 4c382fa278dbfea48a3db0e90d7c719d, type: 3}
       propertyPath: m_Name
       value: ResourcesUI

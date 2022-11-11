@@ -17,6 +17,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
     private GameObject gameObjectText;
 
     public List<GameObject> wariorCountingRes = new List<GameObject>();
+    
 
     private GameObject [] addToList;
 
@@ -110,6 +111,8 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
 
         public List<string> resCounting;
 
+        public List<int> resIntCount;
+
 
 
 
@@ -125,14 +128,26 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
             gameObjectsResources.Add(go.GetComponent<SaveableEntityBuilding>().GetID());
             // Debug.Log(go.GetComponent<SaveableEntityBuilding>().GetID());
             // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text + "ressssssssss");
-        }
+            }
+
+            //
+        List<int> intResCount = new List<int>();
+            foreach (ResourceTypeSO resourceType in resourceTypeList.list){
+
+            Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
+            int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
+            // Debug.Log(resourceAmount + " resource amount tikrinam");
+            resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+            }
+        
+        
         // Instantiate the struct which contains the data we want to save and return it as object
-        return new PlayerDataCounterOtherRes()
-        {
+        return new PlayerDataCounterOtherRes() {
             // counteris = counteris,
             // tempDictionary = wariorTypeTransformDictionary,
             gameObjectText = gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text,
             resCounting = gameObjectsResources,
+            resIntCount = intResCount,
             // resourceAmount = PlayerManagerAll.Instance.GetResourceAmount(pfPlayer1),
             // wariorTypeTransformDictionary = wariorTypeTransformDictionary,
 
@@ -217,6 +232,28 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
             }
         }
         wariorCountingRes = foundEnemiesRes;
+
+
+
+
+        // List<int> gameObjectsResourcesInt = data.resIntCount;
+        // List<GameObject> foundEnemiesResInt = new List<GameObject>();
+        // foreach (int goInt in gameObjectsResourcesInt)
+        // {
+        //     // Search for Objects with a given ID
+        //     SaveableEntityBuilding objInt = SaveableEntityBuilding.FindID(goInt);
+        //     if(objInt)
+        //     {
+        //         // Found a anemy with the saved ID
+        //         foundEnemiesResInt.Add(objInt.gameObject);
+        //         Debug.Log("RES TEmplate with ID: " + goInt + " found.");
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("No RES TEmplat with ID: " + goInt + " found.");
+        //     }
+        // }
+        // wariorCountingRes = foundEnemiesResInt;
         // Debug.Log(wariorCounting + " wariorcounting");
     }
 
