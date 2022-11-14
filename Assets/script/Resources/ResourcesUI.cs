@@ -58,12 +58,12 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
             resourceTypeTransformDictionary[resourceType] = resourceTransform;
             index ++;
 
-        }
+            }
 
         addToList = GameObject.FindGameObjectsWithTag("resourceTemplate");
             foreach( GameObject go in addToList) {
             wariorCountingRes.Add(go);
-        }
+            }
         }
 
 
@@ -72,7 +72,17 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
     private void Start(){
         // DontDestroyOnLoad(gameObject);
         ResourceManager.Instance.OnResourceAmountChanged += ResourceManager_OnResourceAmountChanged;
-        // UpdateResourceAmount();
+        string path = Application.persistentDataPath + "/saves/Building.save";
+
+            if ( File.Exists(path)) {
+                Debug.Log("yra failas " + path);
+                // SaveLoadSystemBuilding.saveName = "Building.save";
+                // SaveLoadSystemBuilding.Load();
+
+            } else {
+                UpdateResourceAmount();
+            }
+
         // DontDestroyOnLoad(gameObject);
     }
 
@@ -125,7 +135,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
         List<string> gameObjectsResources = new List<string>();
             foreach (GameObject go in wariorCountingRes) {
-            gameObjectsResources.Add(go.GetComponent<SaveableEntityBuilding>().GetID());
+            // gameObjectsResources.Add(go.GetComponent<SaveableEntityBuilding>().GetID());
             // Debug.Log(go.GetComponent<SaveableEntityBuilding>().GetID());
             // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text + "ressssssssss");
             }
@@ -199,6 +209,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
     {
         // This function lets you know, that somewere deeper in the hirarchy of this GameObject a loaded GameObject got added to the structure
         // You may want to know that so you can setup the relations you may need
+
 
     }
 
