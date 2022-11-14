@@ -35,8 +35,8 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
 
         if ( File.Exists(path)) {
                 Debug.Log("yra failas " + path);
-                // SaveLoadSystemBuilding.saveName = "Building.save";
-                // SaveLoadSystemBuilding.Load();
+                SaveLoadSystemBuilding.saveName = "Building.save";
+                SaveLoadSystemBuilding.Load();
 
         } else {
         
@@ -135,7 +135,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
         List<string> gameObjectsResources = new List<string>();
             foreach (GameObject go in wariorCountingRes) {
-            // gameObjectsResources.Add(go.GetComponent<SaveableEntityBuilding>().GetID());
+            gameObjectsResources.Add(go.GetComponent<SaveableEntityBuilding>().GetID());
             // Debug.Log(go.GetComponent<SaveableEntityBuilding>().GetID());
             // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text + "ressssssssss");
             }
@@ -146,7 +146,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
 
             Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
             int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
-            // Debug.Log(resourceAmount + " resource amount tikrinam");
+            Debug.Log(resourceAmount + " resource amount tikrinam");
             resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
             }
         
@@ -170,11 +170,14 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
     }
     public void LoadState(object state)
     {
-        gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
+
         PlayerDataCounterOtherRes data = (PlayerDataCounterOtherRes)state; // Receive a object which we need to
                                              // cast to extract our loaded data
+
         // this.counteris = data.counteris;
+        gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
         gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text = data.gameObjectText;
+        Debug.Log( gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text);
         // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text + " text mesh pro results ressssssssssss");
         // wariorTypeTransformDictionary = data.tempDictionary;
 

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SaveablePrefabsBuilding
   m_EditorClassIdentifier: 
   m_prefabs:
-  - {fileID: 1765999822960732542, guid: 335b2450aad26fa4cbb36a128c0fbfb5, type: 3}
-  - {fileID: 5724905636626060137, guid: fc7b438b02beecd438727f3aaf06043d, type: 3}
+  - {fileID: 8269766197405957387, guid: 9cc6a61d349d61f4696b42c50dbbbda7, type: 3}
+  - {fileID: 6832279552080169175, guid: 679560f7bb429e74b9fa8937247c9259, type: 3}
+  - {fileID: 4043186618274632313, guid: 1028208bf8f27aa4a99fae23be45d470, type: 3}
+  - {fileID: 1272108980320253326, guid: cb6df80362eb18c4a9713fea69c76ce3, type: 3}
   - {fileID: 3710214238985678605, guid: a82bfdc706ab48141aebbb50a138fc1f, type: 3}
-  - {fileID: 5496415161664185417, guid: 8e2012988eddef24daf8a314b25f1fd4, type: 3}

@@ -70,7 +70,7 @@ public class CanvasCanvas : MonoBehaviour, ISaveableBuilding
         // This function lets you know, that somewere deeper in the hirarchy of this GameObject a loaded GameObject got added to the structure
         // You may want to know that so you can setup the relations you may need
 
-
+        
     }
 
     public void PostInstantiation(object state)
