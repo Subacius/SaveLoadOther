@@ -13,7 +13,7 @@ public class ResourceManager : MonoBehaviour, ISaveable
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
 
 
-    public event EventHandler OnResourceAmountChanged;
+   // public event EventHandler OnResourceAmountChanged;
 
     //adding starting resources
     [SerializeField] private List<ResourceAmount> startingResourceAmountList;
@@ -97,8 +97,9 @@ public class ResourceManager : MonoBehaviour, ISaveable
     public void AddResource(ResourceTypeSO resourceType, int amount)
     {
         resourceAmountDictionary[resourceType] += amount;
+        ResourcesUI.UpdateResourceAmount(resourceType, resourceAmountDictionary[resourceType]);
         //?.Invoke patikrina ar ne null 
-        OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
+        //OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public int GetResourceAmount(ResourceTypeSO resourceType) {
@@ -187,7 +188,7 @@ public class ResourceManager : MonoBehaviour, ISaveable
 
     public void PostInstantiation(object state)
     {
-        
+        ResourcesUI.UpdateResourceAmount();
 
     }
     public void GotAddedAsChild(GameObject obj, GameObject hisParent)
