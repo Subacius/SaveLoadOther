@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8583284022100243767}
   - component: {fileID: 8583284022100243764}
-  - component: {fileID: 1333197469822826552}
   m_Layer: 5
   m_Name: ResourcesUI
   m_TagString: Untagged
@@ -50,21 +49,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceTemplate: {fileID: 7348154609101616996, guid: 60b169e3fd78d6848936cbecc97f896f, type: 3}
-  wariorCountingRes: []
---- !u!114 &1333197469822826552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8583284022100243766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 309f5c2845053874aaf028be2f5c7630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ID: 
-  m_childID: 
-  m_prefabID: ResourcesUI
-  m_autoSetPrefabID: 1
-  m_saveTransform: 1
+  offsetAmount: -160
