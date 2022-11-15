@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SaveLoadSystemNaujas
+namespace SaveLoadSystem
 {
     public interface ISaveable
     {

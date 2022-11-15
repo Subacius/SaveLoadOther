@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 504365022348516152}
   - component: {fileID: 1388019430409004585}
   - component: {fileID: 1384417431025283044}
-  - component: {fileID: 3710214238985678605}
+  - component: {fileID: 8810254885366699501}
   m_Layer: 11
   m_Name: pfMetal Melter
   m_TagString: Untagged
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1999237fe09fa42816323f9c941060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3710214238985678605
+--- !u!114 &8810254885366699501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 881250404867844354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b0278e368066d49893aace15d6f478, type: 3}
+  m_Script: {fileID: 11500000, guid: 309f5c2845053874aaf028be2f5c7630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ID: 

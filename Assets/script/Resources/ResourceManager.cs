@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using SaveLoadSystemNaujas;
 using System.IO;
-using SaveLoadSystemBuildingName;
+using SaveLoadSystem;
 
-public class ResourceManager : MonoBehaviour
+[RequireComponent(typeof(SaveableEntity))]
+public class ResourceManager : MonoBehaviour, ISaveable
 {
     //singleton pattern  // static instante field  // in Awake nepamirstan Instance = this;
     public static ResourceManager Instance {get; private set;}
@@ -122,4 +122,76 @@ public class ResourceManager : MonoBehaviour
             resourceAmountDictionary[resourceAmount.resourceType] -= resourceAmount.amount;
         }
       }
+
+
+
+    //------------------------------------
+    // ISaveable implementation...
+    //------------------------------------
+
+    // Create a Serializable struct which contains all sorable data:
+    // You don't need to save the location, rotation and scale, this will be done behind the scenes ;)
+    [System.Serializable]
+    struct ResourceObject
+    {
+        public string name;
+        public int amount;
+    }
+    [System.Serializable]
+    struct ResourceManagerData
+    {
+        public List<ResourceObject> resources;
+    }
+
+    public object SaveState()
+    {
+        List<ResourceObject> resourcesToSave = new List<ResourceObject>();
+        foreach(var res in resourceAmountDictionary)
+        {
+            ResourceObject obj;
+            obj.name = res.Key.nameString;
+            obj.amount = res.Value;
+            resourcesToSave.Add(obj);
+        }
+        return new ResourceManagerData()
+        {
+            resources = resourcesToSave
+        };
+    }
+    public void LoadState(object state)
+    {
+        ResourceManagerData data = (ResourceManagerData)state;
+        List<ResourceObject> resourcesToLoad = data.resources;
+        for (int i = 0; i < resourcesToLoad.Count; ++i)
+        {
+            foreach (var res in resourceAmountDictionary)
+            {
+                if (res.Key.nameString == resourcesToLoad[i].name)
+                {
+                    resourceAmountDictionary[res.Key] = resourcesToLoad[i].amount;
+                    goto nextElem;
+                }
+            }
+            nextElem:;
+        }
+    }
+
+    public bool NeedsToBeSaved()
+    {
+        return true;
+    }
+    public bool NeedsReinstantiation()
+    {
+        return false;
+    }
+
+    public void PostInstantiation(object state)
+    {
+        
+
+    }
+    public void GotAddedAsChild(GameObject obj, GameObject hisParent)
+    {
+
+    }
 }

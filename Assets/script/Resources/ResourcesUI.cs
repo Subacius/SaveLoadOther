@@ -3,21 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using SaveLoadSystemNaujas;
-using SaveLoadSystemBuildingName;
+using SaveLoadSystem;
 using System.IO;
 
-[RequireComponent(typeof(SaveableEntityBuilding))]
+[RequireComponent(typeof(SaveableEntity))]
 
-public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
+public class ResourcesUI : MonoBehaviour, ISaveable {
+
+    // >> 
+    // >> This is the correct way to get a template object (Prefab)
+    // >> You don't add it as a child in the editor, you add it as a serialized field like this, 
+    // >> so you can see the slot in the unity editor. Drag and drop the prefab you want to use. (already done)
+    // >> 
+    [SerializeField] ResouceUIElement resourceTemplate;
+
 
     private ResourceTypeListSO resourceTypeList;
-    private Dictionary<ResourceTypeSO, Transform> resourceTypeTransformDictionary;
+    private Dictionary<ResourceTypeSO, ResouceUIElement> resourceTypeTransformDictionary;
+    // private Dictionary<ResourceTypeSO, Transform> resourceTypeTransformDictionary;
 
-    private GameObject gameObjectText;
+    // >> 
+    // >> What is the gameObejctText needed for?
+    // >> 
+    //private GameObject gameObjectText;
 
-    public List<GameObject> wariorCountingRes = new List<GameObject>();
-    
+    // >> 
+    // >> What are these objects? If you try to store the resource amount using these, don't. 
+    // >> The saving of the resources is part of your ResourceManager -> see there, I added the part, to save the amounts =)
+    // >> 
+    //public List<GameObject> wariorCountingRes = new List<GameObject>();
+
 
     private GameObject [] addToList;
 
@@ -33,37 +48,49 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
 
         string path = Application.persistentDataPath + "/saves/Building.save";
 
-        if ( File.Exists(path)) {
+        // >> 
+        // >> Do not load any save in the awake of a object. At this point of time it is not garanteed
+        // >> that all objects got instantiated by the engine.
+        // >> 
+       /* if ( File.Exists(path)) {
                 Debug.Log("yra failas " + path);
-                SaveLoadSystemBuilding.saveName = "Building.save";
-                SaveLoadSystemBuilding.Load();
+            SaveLoadSystem.SaveLoadSystem.saveName = "Building.save";
+            SaveLoadSystem.SaveLoadSystem.Load();
 
-        } else {
-        
-        resourceTypeList = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
+        } else */
+        {
 
-        resourceTypeTransformDictionary = new Dictionary<ResourceTypeSO, Transform>();
-        Transform resourceTemplate = transform.Find("resourceTemplate");
-        resourceTemplate.gameObject.SetActive(false);
+            resourceTypeList = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
+
+            //resourceTypeTransformDictionary = new Dictionary<ResourceTypeSO, Transform>();
+            resourceTypeTransformDictionary = new Dictionary<ResourceTypeSO, ResouceUIElement>();
+            //Transform resourceTemplate = transform.Find("resourceTemplate");
+            //resourceTemplate.gameObject.SetActive(false);
 
 
-        int index = 0;
-        foreach (ResourceTypeSO resourceType in resourceTypeList.list){
-            Transform resourceTransform = Instantiate(resourceTemplate,transform);
-            resourceTransform.gameObject.SetActive(true);
-            float offsetAmount = -160f;
-            resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
-            resourceTransform.Find("image").GetComponent<Image>().sprite = resourceType.sprite;
+            int index = 0;
+            foreach (ResourceTypeSO resourceType in resourceTypeList.list)
+            {
+                //Transform resourceTransform = Instantiate(resourceTemplate,transform);
+                ResouceUIElement resourceTransform = Instantiate(resourceTemplate, transform);
+                resourceTransform.gameObject.SetActive(true);
+                float offsetAmount = -160f;
+                //resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
+                //resourceTransform.Find("image").GetComponent<Image>().sprite = resourceType.sprite;
+                resourceTransform.SetPosition(new Vector2(offsetAmount * index, 0));
+                resourceTransform.SetImage(resourceType.sprite);
 
-            resourceTypeTransformDictionary[resourceType] = resourceTransform;
-            index ++;
+
+                resourceTypeTransformDictionary[resourceType] = resourceTransform;
+                index ++;
 
             }
 
-        addToList = GameObject.FindGameObjectsWithTag("resourceTemplate");
-            foreach( GameObject go in addToList) {
+            /*addToList = GameObject.FindGameObjectsWithTag("resourceTemplate");
+            foreach( GameObject go in addToList) 
+            {
             wariorCountingRes.Add(go);
-            }
+            }*/
         }
 
 
@@ -74,12 +101,16 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         ResourceManager.Instance.OnResourceAmountChanged += ResourceManager_OnResourceAmountChanged;
         string path = Application.persistentDataPath + "/saves/Building.save";
 
-            if ( File.Exists(path)) {
+        // >> 
+        // >> Loading any save file may cause problems, depending on how you have setup the objects, but 
+        // >> at the time I tested it, it causes no problems.
+        // >> 
+        if ( File.Exists(path)) {
                 Debug.Log("yra failas " + path);
-                // SaveLoadSystemBuilding.saveName = "Building.save";
-                // SaveLoadSystemBuilding.Load();
+            SaveLoadSystem.SaveLoadSystem.saveName = "Building.save";
+            SaveLoadSystem.SaveLoadSystem.Load();
 
-            } else {
+        } else {
                 UpdateResourceAmount();
             }
 
@@ -94,10 +125,22 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         
         foreach (ResourceTypeSO resourceType in resourceTypeList.list){
 
-            Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
-            int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
-            // Debug.Log(resourceAmount + " resource amount tikrinam");
-            resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+            if(resourceTypeTransformDictionary.ContainsKey(resourceType))
+            {
+                //Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
+                ResouceUIElement resourceTransform = resourceTypeTransformDictionary[resourceType];
+                int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
+                // Debug.Log(resourceAmount + " resource amount tikrinam");
+                //if(resourceTransform)
+                //    resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+                if (resourceTransform)
+                    resourceTransform.SetText(resourceAmount.ToString());
+            }
+            else
+            {
+                Debug.LogWarning("Key: " + resourceType.name + " does not exist in the table: resourceTypeTransformDictionary");
+            }
+            
         }
     }
 
@@ -119,7 +162,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
 
         // public Dictionary<PlayerTypeSO, Transform> tempDictionary;
 
-        public List<string> resCounting;
+        //public List<string> resCounting;
 
         public List<int> resIntCount;
 
@@ -132,22 +175,29 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
     }
     public object SaveState()
     {
-        gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
+        /*gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
         List<string> gameObjectsResources = new List<string>();
             foreach (GameObject go in wariorCountingRes) {
-            gameObjectsResources.Add(go.GetComponent<SaveableEntityBuilding>().GetID());
-            // Debug.Log(go.GetComponent<SaveableEntityBuilding>().GetID());
+            gameObjectsResources.Add(go.GetComponent<SaveableEntity>().GetID());
+            // Debug.Log(go.GetComponent<SaveableEntity>().GetID());
             // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text + "ressssssssss");
-            }
+            }*/
 
             //
         List<int> intResCount = new List<int>();
             foreach (ResourceTypeSO resourceType in resourceTypeList.list){
 
-            Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
-            int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
-            Debug.Log(resourceAmount + " resource amount tikrinam");
-            resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+            //Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
+            if (resourceTypeTransformDictionary.ContainsKey(resourceType))
+            {
+                ResouceUIElement resourceTransform = resourceTypeTransformDictionary[resourceType];
+                int resourceAmount = ResourceManager.Instance.GetResourceAmount(resourceType);
+                Debug.Log(resourceAmount + " resource amount tikrinam");
+                //resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+                if (resourceTransform)
+                    resourceTransform.SetText(resourceAmount.ToString());
+            }
+            
             }
         
         
@@ -155,8 +205,8 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         return new PlayerDataCounterOtherRes() {
             // counteris = counteris,
             // tempDictionary = wariorTypeTransformDictionary,
-            gameObjectText = gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text,
-            resCounting = gameObjectsResources,
+           // gameObjectText = gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text,
+            //resCounting = gameObjectsResources,
             resIntCount = intResCount,
             // resourceAmount = PlayerManagerAll.Instance.GetResourceAmount(pfPlayer1),
             // wariorTypeTransformDictionary = wariorTypeTransformDictionary,
@@ -175,9 +225,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
                                              // cast to extract our loaded data
 
         // this.counteris = data.counteris;
-        gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
-        gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text = data.gameObjectText;
-        Debug.Log( gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text);
+        
         // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text + " text mesh pro results ressssssssssss");
         // wariorTypeTransformDictionary = data.tempDictionary;
 
@@ -206,7 +254,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
     // Return true, if this object needs to be reinstantiated at load or false if the loading is enough
     public bool NeedsReinstantiation()
     {
-        return true;
+        return false;
     }
     public void GotAddedAsChild(GameObject obj, GameObject hisParent)
     {
@@ -228,12 +276,16 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         // You may want to store the targets ID, so you can load back to the right object.
         // Call: obj.id on the SaveableEntity component of your target to get the ID
 
-        List<string> gameObjectsResources = data.resCounting;
+       // gameObjectText = GameObject.Find("resourceTemplate(Clone)/text");
+      //  gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text = data.gameObjectText;
+       // Debug.Log(gameObjectText.GetComponent<TMPro.TextMeshProUGUI>().text);
+
+        /*List<string> gameObjectsResources = data.resCounting;
         List<GameObject> foundEnemiesRes = new List<GameObject>();
         foreach (string go in gameObjectsResources)
         {
             // Search for Objects with a given ID
-            SaveableEntityBuilding obj = SaveableEntityBuilding.FindID(go);
+            SaveableEntity obj = SaveableEntity.FindID(go);
             if(obj)
             {
                 // Found a anemy with the saved ID
@@ -245,7 +297,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
                 Debug.Log("No RES TEmplat with ID: " + go + " found.");
             }
         }
-        wariorCountingRes = foundEnemiesRes;
+        wariorCountingRes = foundEnemiesRes;*/
 
 
 
@@ -255,7 +307,7 @@ public class ResourcesUI : MonoBehaviour, ISaveableBuilding {
         // foreach (int goInt in gameObjectsResourcesInt)
         // {
         //     // Search for Objects with a given ID
-        //     SaveableEntityBuilding objInt = SaveableEntityBuilding.FindID(goInt);
+        //     SaveableEntity objInt = SaveableEntity.FindID(goInt);
         //     if(objInt)
         //     {
         //         // Found a anemy with the saved ID

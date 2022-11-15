@@ -4,7 +4,6 @@ namespace SaveLoadSystem.Editor
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEditor;
-    using SaveLoadSystemNaujas;
 #if UNITY_2020
     using UnityEditor.Experimental.SceneManagement;
 #else

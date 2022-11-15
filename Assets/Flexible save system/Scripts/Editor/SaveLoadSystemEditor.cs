@@ -4,7 +4,6 @@ namespace SaveLoadSystem.Editor
 {
     using UnityEngine;
     using UnityEditor;
-    using SaveLoadSystemNaujas;
     [CustomEditor(typeof(SaveLoadSystem))]
     public class SaveLoadSystemEditor : Editor
     {

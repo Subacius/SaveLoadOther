@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SaveLoadSystemNaujas
+namespace SaveLoadSystem
 {
     public class SaveableEntity : MonoBehaviour, ISaveID
     {
@@ -52,6 +52,20 @@ namespace SaveLoadSystemNaujas
         public struct Vector4Data
         {
             public float x, y, z, w;
+            public Vector4Data(Vector4 vec)
+            {
+                x = vec.x;
+                y = vec.y;
+                z = vec.z;
+                w = vec.w;
+            }
+            public Vector4Data(Quaternion quat)
+            {
+                x = quat.x;
+                y = quat.y;
+                z = quat.z;
+                w = quat.w;
+            }
             public void FromVector4(Vector4 v)
             {
                 x = v.x;
@@ -102,6 +116,7 @@ namespace SaveLoadSystemNaujas
             public bool hasPrefab;
             public string prefabID;   // Prefab ID for instantiating this gameObject
             public string thisChildID; // ID for this in case this is a child of a SaveableEntity
+            public bool saveTransform; 
             public TransformData transformData; // Location, Rotation and scale of this gameObject
             public List<string> deletedChilds;
             public bool needsToBeReinstantiated;
@@ -114,6 +129,7 @@ namespace SaveLoadSystemNaujas
         [SerializeField] string m_childID;
         [SerializeField] string m_prefabID;
         [SerializeField] bool m_autoSetPrefabID = true;
+        [SerializeField] bool m_saveTransform = true;
 
         ObjectMetadata m_metadata;
         Dictionary<string, object> m_dictionary;
@@ -211,6 +227,14 @@ namespace SaveLoadSystemNaujas
         {
             return m_prefabID;
         }
+        public void SetSaveTransform(bool enable)
+        {
+            m_saveTransform = enabled;
+        }
+        public bool GetSaveTransform()
+        {
+            return m_saveTransform;
+        }
         public void ResetTransform()
         {
             transform.localPosition = m_metadata.transformData.local.position.ToVector3();
@@ -228,8 +252,9 @@ namespace SaveLoadSystemNaujas
                 SetID(m_metadata.thisID);
                 m_prefabID = m_metadata.prefabID;
                 m_childID = m_metadata.thisChildID;
-
-                ResetTransform();
+                m_saveTransform = m_metadata.saveTransform;
+                if(m_saveTransform)
+                    ResetTransform();
             }
         }
 
@@ -281,9 +306,12 @@ namespace SaveLoadSystemNaujas
                 parentName = transform.parent.name;
             }
             TransformData transformData = new TransformData();
-            transformData.local.position.FromVector3(transform.localPosition);
-            transformData.local.rotation.FromQuaternion(transform.localRotation);
-            transformData.local.scale.FromVector3(transform.localScale);
+            if (m_saveTransform)
+            {
+                transformData.local.position.FromVector3(transform.localPosition);
+                transformData.local.rotation.FromQuaternion(transform.localRotation);
+                transformData.local.scale.FromVector3(transform.localScale);
+            }
 
             bool hasPrefab = true;
             if (m_prefabID == "")
@@ -325,6 +353,7 @@ namespace SaveLoadSystemNaujas
                 hasPrefab = hasPrefab,
                 prefabID = m_prefabID,
                 thisChildID = m_childID,
+                saveTransform = m_saveTransform,
                 transformData = transformData,
                 deletedChilds = GetDeletedChilds(),
                 needsToBeReinstantiated = needsReinstantiate

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace SaveLoadSystemNaujas
+namespace SaveLoadSystem
 {
     
     public class SaveLoadSystem : MonoBehaviour
@@ -138,7 +138,7 @@ namespace SaveLoadSystemNaujas
             using (FileStream stream = File.Open(fullSavePath, FileMode.Open))
             {
                 var formatter = new BinaryFormatter();
-                return (Dictionary<string, object>)formatter.Deserialize(stream); 
+                return (Dictionary<string, object>)formatter.Deserialize(stream); ;
             }
         }
 

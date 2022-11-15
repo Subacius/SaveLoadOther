@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SaveLoadSystemBuildingName;
+using SaveLoadSystem;
 
-[RequireComponent(typeof(SaveableEntityBuilding))]
+[RequireComponent(typeof(SaveableEntity))]
 
-public class CanvasCanvas : MonoBehaviour, ISaveableBuilding
+public class CanvasCanvas : MonoBehaviour, ISaveable
 {
     // Start is called before the first frame update
     void Start()

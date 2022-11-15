@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6544439498860496852}
   - component: {fileID: 6544439498860496855}
   - component: {fileID: 6544439498860496854}
-  - component: {fileID: 1272108980320253326}
+  - component: {fileID: 3219092590300650107}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1272108980320253326
+--- !u!114 &3219092590300650107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,12 +114,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6544439498860496849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b0278e368066d49893aace15d6f478, type: 3}
+  m_Script: {fileID: 11500000, guid: 309f5c2845053874aaf028be2f5c7630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 7e414085-8edc-4bf6-9d29-874fc5cbcc64
+  m_ID: 
   m_childID: 
-  m_prefabID: Canvasas
+  m_prefabID: Canvas
   m_autoSetPrefabID: 1
   m_saveTransform: 1
 --- !u!1001 &367843457976278930
@@ -447,6 +447,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6544439498860496853}
     m_Modifications:
+    - target: {fileID: -6990790548572530940, guid: 1028208bf8f27aa4a99fae23be45d470, type: 3}
+      propertyPath: m_prefabID
+      value: ResourcesUI
+      objectReference: {fileID: 0}
     - target: {fileID: 2785300258282523378, guid: 1028208bf8f27aa4a99fae23be45d470, type: 3}
       propertyPath: m_ID
       value: 0bfdd7a1-790f-442c-a407-504dfc6356c1
@@ -543,7 +547,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4043186618274632313, guid: 1028208bf8f27aa4a99fae23be45d470, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1028208bf8f27aa4a99fae23be45d470, type: 3}
 --- !u!224 &4619776081905949596 stripped
 RectTransform:

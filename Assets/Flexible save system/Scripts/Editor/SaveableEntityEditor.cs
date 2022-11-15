@@ -3,7 +3,6 @@ namespace SaveLoadSystem.Editor
 {
     using UnityEditor;
     using UnityEngine;
-    using SaveLoadSystemNaujas;
 
     [CustomEditor(typeof(SaveableEntity))]
     public class SaveableEntityEditor : SaveIDManagerEditor<SaveableEntity>
