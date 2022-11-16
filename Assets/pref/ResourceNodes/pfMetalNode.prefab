@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5775754858831064933}
   - component: {fileID: 5784238522612290768}
   - component: {fileID: 953559207584866835}
-  - component: {fileID: 6832279552080169175}
+  - component: {fileID: 7773981020324367590}
   m_Layer: 0
   m_Name: pfMetalNode
   m_TagString: Enemy
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf30d10909da7c478ba6b8c97642985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6832279552080169175
+--- !u!114 &7773981020324367590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9192054410292106212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b0278e368066d49893aace15d6f478, type: 3}
+  m_Script: {fileID: 11500000, guid: 309f5c2845053874aaf028be2f5c7630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ID: 

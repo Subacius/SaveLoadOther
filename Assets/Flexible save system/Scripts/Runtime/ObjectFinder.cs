@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SaveLoadSystemNaujas
+namespace SaveLoadSystem
 {
     public static class ObjectFinder
     {

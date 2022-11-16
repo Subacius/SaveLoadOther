@@ -1,5 +1,5 @@
 
-namespace SaveLoadSystemNaujas
+namespace SaveLoadSystem
 {
     public interface ISaveID
     {

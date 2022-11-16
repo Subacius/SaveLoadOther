@@ -4,7 +4,6 @@ namespace SaveLoadSystem.Editor
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEditor;
-    using SaveLoadSystemNaujas;
 
     [CustomEditor(typeof(SaveablePrefabs))]
     public class SaveablePrefabsEditor : Editor

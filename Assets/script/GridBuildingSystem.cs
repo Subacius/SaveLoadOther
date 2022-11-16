@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using CodeMonkey.Utils;
 using System.IO;
-using SaveLoadSystemBuildingName;
 
 
 public class GridBuildingSystem : MonoBehaviour {
@@ -50,8 +48,8 @@ public class GridBuildingSystem : MonoBehaviour {
 
         activeplacedObjectTypeSO = null; //placedObjectTypeSOList[0];
 
-        // SaveLoadSystemBuilding.saveName = "Building.save";
-        // Debug.Log(SaveLoadSystemBuilding.saveName + " saved name");
+        // SaveLoadSystem.saveName = "Building.save";
+        // Debug.Log(SaveLoadSystem.saveName + " saved name");
 
         // string path = Application.persistentDataPath + "/saves/Building.save";
         // // Debug.Log(path + " path");
@@ -59,8 +57,8 @@ public class GridBuildingSystem : MonoBehaviour {
 
         //     if ( File.Exists(path)) {
         //         // Debug.Log("yra failas " + path);
-        //         SaveLoadSystemBuilding.saveName = "Building.save";
-        //         SaveLoadSystemBuilding.Load();
+        //         SaveLoadSystem.saveName = "Building.save";
+        //         SaveLoadSystem.Load();
 
         //     } else {
 
@@ -125,29 +123,44 @@ public class GridBuildingSystem : MonoBehaviour {
     {
         // Working
 
-        // SaveLoadSystemBuilding.saveName = "Building.save";
-        // Debug.Log(SaveLoadSystemBuilding.saveName + " save building");
-        // SaveLoadSystemBuilding.SaveNew();
+        // SaveLoadSystem.saveName = "Building.save";
+        // Debug.Log(SaveLoadSystem.saveName + " save building");
+        // SaveLoadSystem.SaveNew();
 
 
     }
 
     public void buttonCheck() {
-        SaveLoadSystemBuilding.saveName = "Building.save";
-        Debug.Log(SaveLoadSystemBuilding.saveName + " save building");
-        SaveLoadSystemBuilding.SaveNew();
+
+        SaveLoadSystem.SaveLoadSystem.saveName = "Building.save";
+        Debug.Log(SaveLoadSystem.SaveLoadSystem.saveName + " save building");
+        SaveLoadSystem.SaveLoadSystem.SaveNew();
     }
 
     public void buttonCheckLoad() {
-        SaveLoadSystemBuilding.saveName = "Building.save";
+        SaveLoadSystem.SaveLoadSystem.saveName = "Building.save";
 
-        SaveLoadSystemBuilding.Load();
+        SaveLoadSystem.SaveLoadSystem.Load();
     }
 
 
 
     private void Start() {
 
+        // >>
+        // >> I do not recomend to load savegames automaticly at startup, because
+        // >> you may changed stuff which will lead in a crash at loading because saved data is not compatible any more.
+        // >> If you only load on a button press or something like that, you have the controll and you know when a save is not compatible any more.
+        // >>
+
+        string path = Application.persistentDataPath + "/saves/Building.save";
+        if (File.Exists(path))
+        {
+            Debug.Log("yra failas " + path);
+            SaveLoadSystem.SaveLoadSystem.saveName = "Building.save";
+            SaveLoadSystem.SaveLoadSystem.Load();
+
+        }
         // DontDestroyOnLoad(gameObject);
 
 
@@ -164,8 +177,8 @@ public class GridBuildingSystem : MonoBehaviour {
 
         //     // Test Can Build
         //     List<Vector2Int> gridPositionList = placedObjectTypeSOList[4].GetGridPositionList(placedObjectOrigin22, dir);
-            
-        
+
+
 
         // PlacedObject placedObject = PlacedObject.Create(placedObjectWorldPosition, placedObjectTypeSOList[3]);
 
